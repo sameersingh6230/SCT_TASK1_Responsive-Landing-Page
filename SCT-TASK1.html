@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEITY - Your Tech Family</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #1a1a1a;
+      padding: 1rem 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      background-color: rgba(26, 26, 26, 0.95);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #f4f4f4;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #27ae60;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 2rem;
+    }
+
+    .nav-links a {
+      color: #f4f4f4;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a:hover {
+      color: #27ae60;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #27ae60;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/seed/deity/1920/1080.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .btn {
+      background-color: #27ae60;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      animation: fadeIn 2s ease-in-out;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: #1e8449;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      color: #1a1a1a;
+    }
+
+    .about-content, .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .about-text, .about-image, .contact-info, .contact-form {
+      flex: 1;
+      padding: 0 2rem;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .services-grid, .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card, .feature-item {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: #27ae60;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-item:hover {
+      background-color: #27ae60;
+      color: #fff;
+    }
+
+    .feature-item i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #27ae60;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #f4f4f4;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .social-links a {
+      color: #f4f4f4;
+      font-size: 1.5rem;
+      margin: 0 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #27ae60;
+      transform: translateY(-3px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+      }
+      .nav-links {
+        margin-top: 1rem;
+      }
+      .nav-links li {
+        margin: 0 0.5rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .about-text, .about-image, .contact-info, .contact-form {
+        padding: 0;
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">TECH<span>FAM</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Welcome to DEITY</h1>
+      <p>Your ultimate tech family for all digital solutions and innovative services.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <h2 class="section-title">About DEITY</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <h3>Our Story</h3>
+        <p>DEITY was founded with a simple mission: to make technology accessible and beneficial for everyone.</p>
+        <p>With years of experience, our team has helped countless individuals and businesses.</p>
+        <p>We're not just a service provider; we're your tech family.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://picsum.photos/seed/deityteam/600/400.jpg" alt="DEITY Team">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>Web Development</h3>
+        <p>Responsive, scalable websites with modern tech stacks.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Mobile Apps</h3>
+        <p>Smart apps for Android and iOS with seamless UX.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Digital Marketing</h3>
+        <p>SEO, content, and social campaigns to grow your brand.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+        <h3>UI/UX Design</h3>
+        <p>Beautiful, intuitive interfaces tailored to your audience.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-server"></i></div>
+        <h3>Cloud Solutions</h3>
+        <p>Secure, scalable cloud setups with 24/7 monitoring.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Cybersecurity</h3>
+        <p>Protect your data with audits, firewalls, and monitoring.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <h2 class="section-title">Why Choose DEITY</h2>
+    <div class="features-grid">
+      <div class="feature-item"><i class="fas fa-rocket"></i><h3>Fast Delivery</h3><p>Projects on time, always.</p></div>
+      <div class="feature-item"><i class="fas fa-bolt"></i><h3>Innovative</h3><p>Cutting-edge tech with fresh ideas.</p></div>
+      <div class="feature-item"><i class="fas fa-handshake"></i><h3>Support</h3><p>Always ready, always reliable.</p></div>
+      <div class="feature-item"><i class="fas fa-cogs"></i><h3>Custom Work</h3><p>Solutions crafted for you.</p></div>
+      <div class="feature-item"><i class="fas fa-chart-pie"></i><h3>Data-Driven</h3><p>Smart insights for smart growth.</p></div>
+      <div class="feature-item"><i class="fas fa-users"></i><h3>Collaboration</h3><p>Your goals, our priority.</p></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Digital City</p>
+        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@deity.com</p>
+        <p><i class="fas fa-clock"></i> Mon–Fri: 9am – 6pm</p>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group"><input type="text" class="form-control" placeholder="Your Name" required></div>
+          <div class="form-group"><input type="email" class="form-control" placeholder="Your Email" required></div>
+          <div class="form-group"><input type="text" class="form-control" placeholder="Subject"></div>
+          <div class="form-group"><textarea class="form-control" placeholder="Your Message" required></textarea></div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <h3>DEITY - Your Tech Family</h3>
+      <p>Bringing technology and innovation to your doorstep.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>&copy; 2023 DEITY. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetElement = document.querySelector(this.getAttribute('href'));
+        if (targetElement) {
+          window.scrollTo({ top: targetElement.offsetTop - 70, behavior: 'smooth' });
+        }
+      });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = this.querySelector('input[type="text"]').value;
+      const successMessage = document.createElement('div');
+      successMessage.style.backgroundColor = '#27ae60';
+      successMessage.style.color = 'white';
+      successMessage.style.padding = '1rem';
+      successMessage.style.borderRadius = '5px';
+      successMessage.style.marginTop = '1rem';
+      successMessage.style.textAlign = 'center';
+      successMessage.innerHTML = `<strong>Thank you, ${name}!</strong> Your message has been sent successfully.`;
+      this.reset();
+      this.parentNode.appendChild(successMessage);
+      setTimeout(() => successMessage.remove(), 5000);
+    });
+  </script>
+</body>
+</html>
