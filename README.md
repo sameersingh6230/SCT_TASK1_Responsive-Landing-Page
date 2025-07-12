@@ -1,1 +1,1 @@
-# SCT_TASK1_Responsive-Landing-Page
+# SCT_TASK1_Responsive-Landing-Page.
